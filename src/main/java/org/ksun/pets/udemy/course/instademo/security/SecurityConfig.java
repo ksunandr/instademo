@@ -24,6 +24,7 @@ import javax.servlet.Filter;
         jsr250Enabled = true,
         proxyTargetClass = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Autowired
@@ -50,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(customUserDetailsService)
-               .passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(customUserDetailsService)
+                .passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
