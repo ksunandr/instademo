@@ -4,17 +4,15 @@ import org.ksun.pets.udemy.course.instademo.validators.EmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = EmailValidator.class)
+@Documented
 public @interface ValidEmail {
 
-    String message() default "Invalide Email";
+    String message() default "Invalid Email";
 
     Class<?>[] groups() default {};
 

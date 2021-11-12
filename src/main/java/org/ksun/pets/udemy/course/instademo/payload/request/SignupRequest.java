@@ -31,7 +31,6 @@ public class SignupRequest {
     @Size(min = 6)
     private String password;
 
-//    @NotEmpty(message = "User confirmPassword is required")
     private String confirmPassword;
 
 
