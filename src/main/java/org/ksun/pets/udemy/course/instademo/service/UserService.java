@@ -2,6 +2,7 @@ package org.ksun.pets.udemy.course.instademo.service;
 
 import org.ksun.pets.udemy.course.instademo.entity.User;
 import org.ksun.pets.udemy.course.instademo.entity.enums.ERole;
+import org.ksun.pets.udemy.course.instademo.exceptions.UserExistException;
 import org.ksun.pets.udemy.course.instademo.payload.request.SignupRequest;
 import org.ksun.pets.udemy.course.instademo.repository.UserRepository;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class UserService {
             return userRepository.save(user);
         } catch (Exception e) {
             LOGGER.error("Error during registration {}", e.getMessage());
-            throw new RuntimeException("The user "+user.getUsername()+" already exist.");
+            throw new UserExistException("The user " + user.getUsername() + " already exist.");
         }
     }
 }
