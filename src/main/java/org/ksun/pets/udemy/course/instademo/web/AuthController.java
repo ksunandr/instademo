@@ -10,6 +10,8 @@ import org.ksun.pets.udemy.course.instademo.security.JWTTokenProvider;
 import org.ksun.pets.udemy.course.instademo.security.SecurityConstants;
 import org.ksun.pets.udemy.course.instademo.service.UserService;
 import org.ksun.pets.udemy.course.instademo.validators.ResponseErrorValidation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,6 +30,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 @PreAuthorize("permitAll()")
 public class AuthController {
+    public static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
     private JWTTokenProvider jwtTokenProvider;
@@ -55,7 +58,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest, BindingResult bindingResult) {
-
+        LOGGER.info("registerUser 1"+bindingResult.hasErrors());
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) return errors;
 

@@ -26,6 +26,9 @@ public class UserService {
     }
 
     public User createUser(SignupRequest userIn) {
+        LOGGER.info("createUser 1 {}", userIn.getEmail());
+
+
         User user = new User();
         user.setEmail(userIn.getEmail());
         user.setName(userIn.getFirstname());
@@ -38,7 +41,7 @@ public class UserService {
             LOGGER.info("Save user {}", userIn.getEmail());
             return userRepository.save(user);
         } catch (Exception e) {
-            LOGGER.error("Error during registration {}", e.getMessage());
+            LOGGER.error("ksan Error during registration {}", e.getMessage());
             throw new UserExistException("The user " + user.getUsername() + " already exist.");
         }
     }
